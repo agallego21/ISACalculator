@@ -79,7 +79,7 @@ public class CalculatatorTest {
 
 	@Test
 	@DisplayName("Restar un número positivo a un número positivo menor")
-	public void testRestarEnterosPosNeg() {
+	public void testRestarEnterosPosPosMen() {
 		assertEquals(3-2),  1);
 	}
 
@@ -91,7 +91,7 @@ public class CalculatatorTest {
 
 	@Test
 	@DisplayName("Restar un número negativo a un número positivo")
-	public void testRestarEnterosPosNeg() {
+	public void testRestarEnterosNegPos() {
 		assertEquals((-3)-2),  -5);
 	}
 
@@ -137,7 +137,7 @@ public class CalculatatorTest {
 
 	@Test
 	@DisplayName("Dividir dos números enteros con resto distinto de 0")
-	public void testDividirEnterosPos() {
+	public void testDividirEnterosPosDis() {
 		assertEquals(5/2,  2.5);
 	}
 
@@ -169,19 +169,19 @@ public class CalculatatorTest {
 	// ********** EXPONENCIAL *********** REVISAR
 	@Test
 	@DisplayName("Prueba Exponencial con base e de 0 = 1")
-    public void testExponencial() {
+    public void testExponenciala() {
 		assertEquals(e,  1); // e**0 = 1
 	}
 
 	@Test
 	@DisplayName("Prueba Exponencial con base e de 1 = 2,718281828")
-	public void testExponencial() {
+	public void testExponencialb() {
 		assertEquals(e,  2.718281828); // e**1 = 2,718281828
 	}
 
 	@Test
 	@DisplayName("Prueba Exponencial con base e de un número negativo (-1)")
-	public void testExponencial() {
+	public void testExponencialc() {
 		assertEquals(e,  0.367879441); // e**-1 = 0,367879441
 	}
 }
