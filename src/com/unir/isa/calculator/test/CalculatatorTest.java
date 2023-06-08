@@ -30,21 +30,21 @@ public class CalculatatorTest {
 	}
 	
 	@Test
-	@DisplayName("Prueba Multiplicación")
+	@DisplayName("Prueba Multiplicacion")
 	public void testMultiplicar() {
 		
 		assertEquals(3*2, 6);
 	}
 
 	@Test
-	@DisplayName("Prueba División")
+	@DisplayName("Prueba Divisin")
 	public void testDividir() {
 		
 		assertEquals(32/8, 4);
 	}
 	
 	@Test
-	@DisplayName("Prueba Raíz Cuadrada")
+	@DisplayName("Prueba Raiz Cuadrada")
 	public void testRaiz() {
 		
 		assertEquals(4, 2*2);
