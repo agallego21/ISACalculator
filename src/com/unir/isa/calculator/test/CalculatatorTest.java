@@ -80,7 +80,7 @@ public class CalculatatorTest {
 	@Test
 	@DisplayName("Restar un número positivo a un número positivo menor")
 	public void testRestarEnterosPosPosMen() {
-		assertEquals(3-2),  1);
+		assertEquals(3-2,  1);
 	}
 
 	@Test
@@ -92,7 +92,7 @@ public class CalculatatorTest {
 	@Test
 	@DisplayName("Restar un número negativo a un número positivo")
 	public void testRestarEnterosNegPos() {
-		assertEquals((-3)-2),  -5);
+		assertEquals((-3)-2,  -5);
 	}
 
 
@@ -166,22 +166,4 @@ public class CalculatatorTest {
 		assertEquals(2*2,  4);
 	}
 
-	// ********** EXPONENCIAL *********** REVISAR
-	@Test
-	@DisplayName("Prueba Exponencial con base e de 0 = 1")
-    public void testExponenciala() {
-		assertEquals(e,  1); // e**0 = 1
-	}
-
-	@Test
-	@DisplayName("Prueba Exponencial con base e de 1 = 2,718281828")
-	public void testExponencialb() {
-		assertEquals(e,  2.718281828); // e**1 = 2,718281828
-	}
-
-	@Test
-	@DisplayName("Prueba Exponencial con base e de un número negativo (-1)")
-	public void testExponencialc() {
-		assertEquals(e,  0.367879441); // e**-1 = 0,367879441
-	}
 }
