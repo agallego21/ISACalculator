@@ -5,16 +5,16 @@ import java.util.Scanner;
 public class Calculator {
 
 	static Scanner scanner = new Scanner(System.in); //Sirve para recoger texto por consola
-	static int select = -1; //opción elegida del usuario
+	static int select = -1; //opciï¿½n elegida del usuario
 	static int num1 = 0, num2 = 0; //Variables
 	
 	public static void main(String[] args) {
 		
-		//Mientras la opción elegida sea 0, preguntamos al usuario
+		//Mientras la opciï¿½n elegida sea 0, preguntamos al usuario
 		while(select != 0){
 			//Try catch para evitar que el programa termine si hay un error
 			try{
-				System.out.println("Elige opción:\n1.- Sumar" +
+				System.out.println("Elige opciï¿½n:\n1.- Sumar" +
 						"\n2.- Restar\n" +
 						"3.- Multiplicar\n" +
 						"4.- Dividir\n" +
@@ -44,10 +44,10 @@ public class Calculator {
 					System.out.println("Adios!");
 					break;
 				default:
-					System.out.println("Número no reconocido");break;
+					System.out.println("Nï¿½mero no reconocido");break;
 				}
 				
-				System.out.println("\n"); //Mostrar un salto de línea en Java
+				System.out.println("\n"); //Mostrar un salto de lï¿½nea en Java
 				
 			}catch(Exception e){
 				System.out.println("Uoop! Error!");
@@ -56,15 +56,53 @@ public class Calculator {
 
 	}
 	
-	//Método para recoger variables por consola
+	//Mï¿½todo para recoger variables por consola
 	public static void pideNumeros(){
-		System.out.println("Introduce número 1:");
+		System.out.println("Introduce nï¿½mero 1:");
 		num1 = Integer.parseInt(scanner.nextLine());
 		
-		System.out.println("Introduce número 2:");
+		System.out.println("Introduce nï¿½mero 2:");
 		num2 = Integer.parseInt(scanner.nextLine());
 
-		//Mostrar un salto de línea en Java
+		//Mostrar un salto de lï¿½nea en Java
 		System.out.println("\n"); 
 	}
+
+	// MÃ©todos de la calculadora
+    public static Double suma(double d, double e) {
+
+        return d + e;
+    }
+
+	public static Double resta(double i, double j) {
+
+		return i - j;
+	}
+
+	public static Double multiplicacion(double i, double j) {
+
+		return i * j;
+	}
+
+	// Comprobar multiplicacion cociente * divisor + resto = dividendo
+	public static Double compruebaMDivision(double i, double j, double k) {
+
+		return (i * j) + k;
+	}
+
+	public static Integer division(int i, int j) {
+
+		return i / j;
+	}
+
+	// FALTA IMPLEMENTAR
+    public static Integer calcularRaizCuadrada(int i) {
+        return null;
+    }
+
+	
 }
+
+  
+
+
