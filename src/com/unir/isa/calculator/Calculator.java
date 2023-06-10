@@ -96,9 +96,32 @@ public class Calculator {
 	}
 
 	// FALTA IMPLEMENTAR
-    public static Integer calcularRaizCuadrada(int i) {
-        return null;
+    // Método para calcular la raíz cuadrada utilizando el Método de Herón
+   // Método para calcular la diferencia absoluta
+    private static double diferenciaAbsoluta(double a, double b) {
+        return a > b ? a - b : b - a;
     }
+
+    // Método para calcular la raíz cuadrada utilizando el Método de Herón
+    public static double calcularRaizCuadrada(double numero) {
+        if (numero < 0) {
+            throw new IllegalArgumentException("El número debe ser no negativo.");
+        }
+
+        // Estimación inicial
+        double estimacion = numero / 2.0;
+        double diferencia;
+
+        do {
+            // Mejora de la estimación
+            double nuevaEstimacion = (estimacion + numero / estimacion) / 2.0;
+            diferencia = diferenciaAbsoluta(nuevaEstimacion, estimacion);
+            estimacion = nuevaEstimacion;
+        } while (diferencia > 1e-10); // 1e-10 es el umbral de precisión
+
+        return estimacion;
+    }
+
 
 	
 }
