@@ -95,8 +95,6 @@ public class Calculator {
 		return i / j;
 	}
 
-	// FALTA IMPLEMENTAR
-    // Método para calcular la raíz cuadrada utilizando el Método de Herón
    // Método para calcular la diferencia absoluta
     private static double diferenciaAbsoluta(double a, double b) {
         return a > b ? a - b : b - a;
