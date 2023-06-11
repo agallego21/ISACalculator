@@ -1,49 +1,55 @@
 package com.unir.isa.calculator;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class Calculator {
 
 	static Scanner scanner = new Scanner(System.in); //Sirve para recoger texto por consola
-	static int select = -1; //opci�n elegida del usuario
-	static int num1 = 0, num2 = 0; //Variables
+	static int select = -1; //opción elegida del usuario
 	
 	public static void main(String[] args) {
-		
-		//Mientras la opci�n elegida sea 0, preguntamos al usuario
+
+		//Mientras la opción elegida sea 0, preguntamos al usuario
 		while(select != 0){
 			//Try catch para evitar que el programa termine si hay un error
 			try{
-				System.out.println("Elige opci�n:\n1.- Sumar" +
-						"\n2.- Restar\n" +
-						"3.- Multiplicar\n" +
-						"4.- Dividir\n" +
-						"0.- Salir");
+
+				showMenu();
+				
 				//Recoger una variable por consola
 				select = Integer.parseInt(scanner.nextLine()); 
 	
 				//Ejemplo de switch case en Java
 				switch(select){
 				case 1: 
-					pideNumeros();
-					System.out.println(num1+" + "+num2+" = "+(num1+num2));
+					menuSuma();
+					pressToContinue();
 					break;
 				case 2: 
-					pideNumeros();
-					System.out.println(num1+" - "+num2+" = "+(num1-num2));
+					menuResta();
+					pressToContinue();
 					break;
 				case 3: 
-					pideNumeros();
-					System.out.println(num1+" * "+num2+" = "+(num1*num2));
+					menuMultiplicacion();
+					pressToContinue();
 					break;
 				case 4: 
-					pideNumeros();
-					System.out.println(num1+" / "+num2+" = "+(num1/num2));
+					menuDivision();
+					pressToContinue();
+					break;
+				case 5: 
+					menuRaizCuadrada();
+					pressToContinue();
 					break;
 				case 0: 
 					System.out.println("Adios!");
 					break;
 				default:
-					System.out.println("N�mero no reconocido");break;
+					System.out.println("\n    Operación no válida.");
+					pressToContinue();
+					break;
 				}
 				
 				System.out.println("\n"); //Mostrar un salto de l�nea en Java
@@ -53,18 +59,6 @@ public class Calculator {
 			}
 		}
 
-	}
-	
-	//M�todo para recoger variables por consola
-	public static void pideNumeros(){
-		System.out.println("Introduce n�mero 1:");
-		num1 = Integer.parseInt(scanner.nextLine());
-		
-		System.out.println("Introduce n�mero 2:");
-		num2 = Integer.parseInt(scanner.nextLine());
-
-		//Mostrar un salto de l�nea en Java
-		System.out.println("\n"); 
 	}
 
 	// Métodos de la calculadora
@@ -100,27 +94,113 @@ public class Calculator {
     }
 
     // Método para calcular la raíz cuadrada utilizando el Método de Herón
-    public static double calcularRaizCuadrada(double numero) {
+    public static double calcularRaizCuadrada(double numero) throws IllegalArgumentException {
         if (numero < 0) {
-            throw new IllegalArgumentException("El número debe ser no negativo.");
+            throw new IllegalArgumentException("El número no puede ser negativo");
         }
 
         // Estimación inicial
         double estimacion = numero / 2.0;
         double diferencia;
-
         do {
             // Mejora de la estimación
             double nuevaEstimacion = (estimacion + numero / estimacion) / 2.0;
             diferencia = diferenciaAbsoluta(nuevaEstimacion, estimacion);
             estimacion = nuevaEstimacion;
-        } while (diferencia > 1e-10); // 1e-10 es el umbral de precisión
+            
+        } while (diferencia > 1e-3); // 1e-3 es el umbral de precisión
 
-        return estimacion;
+        return BigDecimal.valueOf(estimacion)
+        	    .setScale(3, RoundingMode.HALF_UP)
+        	    .doubleValue();		//Redondeamos a tres decimales
     }
 
 
+    /**
+     * Muestra el menú de la calculador, borrando el contenido de la pantalla
+     */
+    private static void showMenu() throws InterruptedException, IOException{
+    	new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+    	System.out.println("==========================="+
+    			"\n    *** CALCULADORA ***"+
+    			"\n==========================="+
+    			"\nOperaciones disponibles:" + 
+    			"\n  1) Suma" + 
+    			"\n  2) Resta" + 
+    			"\n  3) Multiplicación" + 
+    			"\n  4) División" + 
+    			"\n  5) Raíz cuadrada" + 
+    			"\n\n  0) Salir");
+    	System.out.print("\n\n  Por favor, seleccione la operación deseada:  ");
+    }
+    
+    
+	/**
+	 * Solicita un número por pantalla
+	 */
+	private static void pressToContinue(){
+		System.out.print("\n    Pulse <Enter> para continuar...");
+		scanner.nextLine();
+	}
 	
+	/**
+	 * Para la ejecución hasta que se pulse una tecla
+	 */
+	private static Double insertNumber(int order){
+		System.out.print("    Introduzca número "+order+":  ");
+		return Double.parseDouble(scanner.nextLine());
+	}
+	
+	/**
+	 * Muestr el resultado de la operación
+	 */
+	private static void showResult(){
+		System.out.print("\n    Pulse <Enter> para continuar...");
+		scanner.nextLine();
+	}
+	
+	private static void menuSuma() {
+		double a = 0;
+		double b = 0;
+		a=insertNumber(1);
+		b=insertNumber(2);
+		System.out.println("             ------------------------");
+		System.out.println("             Resultado :  "+(a+b));	
+	}
+	
+	private static void menuResta() {
+		double a = 0;
+		double b = 0;
+		a=insertNumber(1);
+		b=insertNumber(2);
+		System.out.println("             ------------------------");
+		System.out.println("             Resultado :  "+(a-b));	
+	}
+	private static void menuMultiplicacion() {
+		double a = 0;
+		double b = 0;
+		a=insertNumber(1);
+		b=insertNumber(2);
+		System.out.println("             ------------------------");
+		System.out.println("             Resultado :  "+(a-b));	
+	}
+	
+	private static void menuDivision() {
+		double a = 0;
+		double b = 0;
+		a=insertNumber(1);
+		b=insertNumber(2);
+		System.out.println("             ------------------------");
+		System.out.println("             Resultado :  "+(a-b));	
+	}
+	
+	private static void menuRaizCuadrada() {
+		double a = 0;
+		a=insertNumber(1);
+		System.out.println("             ------------------------");
+		System.out.println("             Resultado :  "+(calcularRaizCuadrada(a)));	
+	}
 }
 
   
